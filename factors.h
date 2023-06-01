@@ -2,9 +2,10 @@
 #define FACTORS_H
 
 #include <stdio.h>
-#include <gmp.h>
+#include <math.h>
 #include <stdlib.h>
+#include <gmp.h>
 
-void _factor(long int val);
+void _factor(mpz_t val);
 
 #endif

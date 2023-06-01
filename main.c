@@ -1,6 +1,8 @@
 #include "factors.h"
 
-void _factor(long int val);
+#define MAX_LINE 100
+
+void _factor(mpz_t val);
 
 /**
  * main - entry point
@@ -13,7 +15,8 @@ void _factor(long int val);
 int main(int argc, char **argv)
 {
 	FILE *fp;
-	long int val;
+	char line[MAX_LINE];
+	mpz_t val;
 
 	if (argc != 2)
 	{
@@ -27,16 +30,15 @@ int main(int argc, char **argv)
 		printf("Error accessing file required");
 		return (1);
 	}
-	while (fscanf(fp, "%ld", &val) == 1)
+	while (fgets(line, sizeof(line), fp) != NULL)
 	{
+		mpz_init(val);
+		mpz_set_str(val, line, 10);
+
 		_factor(val);
-	}
 
-	if (!feof(fp))
-	{
-		printf("Read Failure");
+		mpz_clear(val);
 	}
-
 	fclose(fp);
 
 	return (0);

@@ -1,20 +1,33 @@
 #include "factors.h"
 
-void _factor(long int val)
-{
-	long int j = 2;
+/**
+ * _factor - Function for factorization
+ * @val: val to factorize
+ *
+ * Return: nothing
+ */
 
-	while (j <= val / 2)
+void _factor(mpz_t val)
+{
+	mpz_t quotient;
+	mpz_t remainder;
+	mpz_t divisor;
+
+	mpz_init(divisor);
+
+	mpz_init(quotient);
+
+	mpz_init(remainder);
+
+	for (mpz_set_ui(divisor, 2); mpz_cmp(divisor, val) <= 0; mpz_add_ui(divisor, divisor, 1))
 	{
-		if (val % j == 0)
+		mpz_fdiv_qr(quotient, remainder, val, divisor);
+
+		if (mpz_cmp_ui(remainder, 0) == 0)
 		{
-			mpz_t quotient;
-			mpz_init(quotient);
-			mpz_set_si(quotient, val / j);
-			gmp_printf("%ld=%Zd*%ld\n", val, quotient, j);
-			mpz_clear(quotient);
+			gmp_printf("%Zd=%Zd*%Zd\n", val, quotient, divisor);
 			break;
 		}
-		j++;
 	}
+	mpz_clears(divisor, quotient, remainder, NULL);
 }
