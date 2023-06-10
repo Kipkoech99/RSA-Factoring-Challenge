@@ -1,11 +1,14 @@
-#ifndef FACTORS_H
-#define FACTORS_H
+#ifndef _FACTORS_H_
+#define _FACTORS_H_
+
 
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
-#include <gmp.h>
+#include <unistd.h>
+#define _GNU_SOURCE
 
-void _factor(mpz_t val);
 
-#endif
+/* size_t getline(char **lineptr, size_t *n, FILE *stream); */
+int factorize(char *buffer);
+
+#endif /* _FACTOR_H_ */

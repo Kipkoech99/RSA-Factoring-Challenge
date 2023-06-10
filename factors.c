@@ -1,33 +1,29 @@
 #include "factors.h"
 
 /**
- * _factor - Function for factorization
- * @val: val to factorize
+ * factorize - The function factorize a number
+ * @buffer: pointer to the address of the number
  *
- * Return: nothing
+ * Author: Thaoban Abdrasheed
+ * Return: int
  */
-
-void _factor(mpz_t val)
+int factorize(char *buffer)
 {
-	mpz_t quotient;
-	mpz_t remainder;
-	mpz_t divisor;
 
-	mpz_init(divisor);
+	u_int32_t num;
+	u_int32_t i;
 
-	mpz_init(quotient);
+	num = atoi(buffer);
 
-	mpz_init(remainder);
 
-	for (mpz_set_ui(divisor, 2); mpz_cmp(divisor, val) <= 0; mpz_add_ui(divisor, divisor, 1))
+	for (i = 2; i < num; i++)
 	{
-		mpz_fdiv_qr(quotient, remainder, val, divisor);
-
-		if (mpz_cmp_ui(remainder, 0) == 0)
+		if (num % i == 0)
 		{
-			gmp_printf("%Zd=%Zd*%Zd\n", val, quotient, divisor);
+			printf("%d=%d*%d\n",num,num/i,i);
 			break;
 		}
 	}
-	mpz_clears(divisor, quotient, remainder, NULL);
+
+return (0);
 }

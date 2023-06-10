@@ -3,7 +3,6 @@
 /**
  * main - main function
  *
- *
  * Return: void
  */
 int main(int argc, char *argv[])
